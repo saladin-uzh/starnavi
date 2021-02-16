@@ -1,0 +1,8 @@
+{
+  "short_name": "StarNavi - JoncoLab",
+  "name": "StarNavi test task solution by JoncoLab",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#8739F9",
+  "background_color": "#F2F5F5"
+}
