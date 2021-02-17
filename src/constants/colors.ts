@@ -1,8 +1,8 @@
 export const colors = {
-  primary: '#8739F9',
-  accent: '#3789F1',
-  grey: '#F2F5F5',
-  text: '#565360',
-  label: '#968E9B',
-  disabled: '#E1DFE9',
+  blue0: 'hsl(203, 90%, 56%)',
+  blue1: 'hsl(208, 100%, 42%)',
+  grey0: 'hsl(0, 0%, 13%)',
+  pastel0: 'hsl(42, 76%, 97%)',
+  pastel1: 'hsl(53, 75%, 94%)',
+  pastel2: 'hsl(39, 40%, 38%)',
 }
