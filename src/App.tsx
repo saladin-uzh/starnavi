@@ -1,9 +1,31 @@
 import { FunctionComponent, useEffect, useState } from 'react'
+import styled from 'styled-components'
+
 import Button from './components/Button'
 import Field, { CellPos } from './components/Field'
 import Log from './components/Log'
 import Select, { SelectOption, SelectOptions } from './components/Select'
+import { sizes } from './constants'
+
 import fetchAppModes, { AppModes } from './utils/fetchAppModes'
+
+const AppContainer = styled.main`
+  display: flex;
+  padding: ${sizes.small};
+
+  section {
+    display: flex;
+    flex-direction: column;
+    margin-right: ${sizes.medium};
+    min-width: calc(${sizes.large} * 5);
+
+    header {
+      display: flex;
+      width: 100%;
+      height: ${sizes.medium};
+    }
+  }
+`
 
 const initialMode = { mode: 'Pick mode...', size: 0 }
 
@@ -41,7 +63,7 @@ const App: FunctionComponent = () => {
   const showAppField = Boolean(fieldSize)
 
   return (
-    <main>
+    <AppContainer>
       <section>
         <header>
           <Select options={selectOptions} value={appMode?.mode} onChange={handleSelectChange} />
@@ -52,7 +74,7 @@ const App: FunctionComponent = () => {
       </section>
 
       <Log messages={logMessages} />
-    </main>
+    </AppContainer>
   )
 }
 

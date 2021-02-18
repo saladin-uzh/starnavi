@@ -1,4 +1,6 @@
 import { ChangeEvent, FunctionComponent } from 'react'
+import styled from 'styled-components'
+import { sizes } from '../constants'
 
 export interface SelectOption {
   mode: string
@@ -12,17 +14,22 @@ interface SelectProps {
   onChange: (value: string) => void
 }
 
+const StyledSelect = styled.select`
+  flex-grow: 1;
+  margin-right: ${sizes.small};
+`
+
 const Select: FunctionComponent<SelectProps> = ({ options, value, onChange }) => {
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => onChange(event.target.value)
 
   return (
-    <select name="app-mode" placeholder={'Pick mode...'} value={value} onChange={handleChange}>
+    <StyledSelect placeholder={'Pick mode...'} value={value} onChange={handleChange}>
       {options.map(({ mode }) => (
         <option key={mode} value={mode}>
           {mode}
         </option>
       ))}
-    </select>
+    </StyledSelect>
   )
 }
 

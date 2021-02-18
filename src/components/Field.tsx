@@ -1,4 +1,6 @@
 import { FunctionComponent, MouseEvent } from 'react'
+import styled from 'styled-components'
+import { colors, sizes } from '../constants'
 
 import mapNTimes from '../utils/mapNTimes'
 
@@ -12,13 +14,23 @@ export interface CellPos {
   col: string
 }
 
+const FieldContainer = styled.table`
+  border-collapse: collapse;
+  margin-top: ${sizes.small};
+
+  td {
+    width: ${sizes.large};
+    height: ${sizes.large};
+    border: 1px solid ${colors.grey0};
+
+    &:hover {
+      background: ${colors.blue0};
+    }
+  }
+`
+
 const Field: FunctionComponent<FieldProps> = ({ size, onCellHoverEnd }) => {
   const getPosValue = (pos: string | undefined): string => `${typeof pos === 'string' ? parseInt(pos) + 1 : undefined}`
-
-  const handleCellMouseEnter = (event: MouseEvent<HTMLTableCellElement>) => {
-    // TODO: Change UI
-    console.log(event.target)
-  }
 
   const handleCellMouseLeave = (event: MouseEvent<HTMLTableCellElement>) => {
     const { row, col } = event.currentTarget.dataset
@@ -26,25 +38,17 @@ const Field: FunctionComponent<FieldProps> = ({ size, onCellHoverEnd }) => {
   }
 
   return (
-    <table>
+    <FieldContainer>
       <tbody>
         {mapNTimes(size, row => (
           <tr key={`row-${row}`}>
             {mapNTimes(size, col => (
-              <td
-                key={`${row}${col}`}
-                data-row={row}
-                data-col={col}
-                onMouseEnter={handleCellMouseEnter}
-                onMouseLeave={handleCellMouseLeave}
-              >
-                0
-              </td>
+              <td key={`${row}${col}`} data-row={row} data-col={col} onMouseLeave={handleCellMouseLeave} />
             ))}
           </tr>
         ))}
       </tbody>
-    </table>
+    </FieldContainer>
   )
 }
 
